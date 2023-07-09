@@ -1,0 +1,45 @@
+<div *ngIf="horse !== undefinied && familyTree !== undefinied" (deleteActionEvent)="handleDelete($event)">
+    <div class="droppable-parent-container" [ngStyle]="{'margin-left': childrenMarginInRem+'rem'}">
+        <div class="left-sided">
+            <button [disabled]="maleHorseParent === undefinied && femaleHorseParent === undefinied" type="button"
+                class="btn btn-outline-secondary btn-sm" (click)="toggleShowParents()">
+                <i *ngIf="showParents === false" class="bi bi-arrow-up"></i>
+                <i *ngIf="showParents === true" class="bi bi-arrow-down"></i>
+            </button>
+
+            <span>{{horse.name}}</span>
+            <i *ngIf="horse.sex === 'FEMALE'" class="bi bi-gender-female"></i>
+            <i *ngIf="horse.sex === 'MALE'" class="bi bi-gender-male"></i>
+        </div>
+        <div class="right-sided">
+            <span>{{horse.dateOfBirth}}</span>
+            <div class="btn-group">
+                <a class="btn btn-sm btn-secondary responsive-info-button" [routerLink]="['../..', horse.id, 'view']"
+                    aria-label="
+                    See details of horse">
+                    <i class="bi bi-info"></i>
+                </a>
+                <a class="btn btn-sm responsive-warning-button" [routerLink]="['../..', horse.id, 'edit']"
+                    aria-label="Edit horse">
+                    <i class="bi bi-pencil"></i>
+                </a>
+                <a class="btn btn-sm responsive-danger-button" (click)="handleDelete(horse.id)"
+                    aria-label="Delete horse">
+                    <i class="bi bi-trash"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="showParents === true">
+    <div *ngIf="femaleHorseParent !== undefinied && familyTree !== undefinied && familyTree.get(femaleHorseParent.id)">
+        <app-droppablehorse [childrenMarginInRem]="childrenMarginInRem+1" [horse]="familyTree.get(femaleHorseParent.id)"
+            [familyTree]="familyTree" />
+    </div>
+
+    <div *ngIf="maleHorseParent !== undefinied && familyTree !== undefinied && familyTree.get(maleHorseParent.id)">
+        <app-droppablehorse [childrenMarginInRem]="childrenMarginInRem+1" [horse]="familyTree.get(maleHorseParent.id)"
+            [familyTree]="familyTree" />
+    </div>
+</div>

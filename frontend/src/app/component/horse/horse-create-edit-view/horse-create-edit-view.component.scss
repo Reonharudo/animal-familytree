@@ -1,0 +1,34 @@
+@use "sass:map";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+
+.parent_input {
+    margin-top: 7px;
+    position: relative;
+}
+
+.heading {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.responsive-warning-button {
+    @include button-variant($light, $light);
+}
+
+.responsive-warning-button:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+.custom_label span {
+    padding-right: 0.2rem;
+}
+
+.display_span {
+    padding-top: 0.4rem;
+    width: fit-content;
+}

@@ -1,0 +1,49 @@
+@use "sass:map";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+.min-width {
+    /* Used to get the actions column in the table to be not wider than necessary */
+    width: 0;
+}
+
+.center-td>td {
+    vertical-align: middle;
+}
+
+.droppable-parent-container {
+    display: flex;
+    justify-content: space-between;
+
+    border: 1px solid rgb(176, 176, 176);
+    padding: 0.6rem;
+}
+
+.left-sided {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.right-sided {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.responsive-info-button,
+.responsive-warning-button,
+.responsive-danger-button,
+.responsive-dark-button,
+.responsive-tree-button {
+    @include button-variant($light, $light);
+}
+
+@each $color in (info, warning, danger) {
+    $value: map.get($theme-colors, $color);
+
+    .responsive-#{$color}-button:hover {
+        @include button-variant($value, $value);
+    }
+}

@@ -1,0 +1,14 @@
+<h1>Family Tree</h1>
+<div class="familytree-container">
+    <div class="d-flex flex-row w-auto spacing">
+        <button class="btn btn-primary mr-1" (click)="loadFamilyTree()" aria-label="Reload horses">
+            <i class="bi bi-arrow-clockwise"></i>
+            Load
+        </button>
+        <input type="number" id="horseName" [(ngModel)]="familyDepth" (ngModelChange)="loadFamilyTree()"
+            name="horseName" min="0" max="1000" placeholder="Maximum family tree depth"
+            onKeyPress="if(this.value.length === 4) return false;" class="form-control small-input">
+    </div>
+    <app-droppablehorse *ngIf="familytree !== undefinied" [horse]="rootHorse" [showParents]="true"
+        [familyTree]="familytree" />
+</div>
